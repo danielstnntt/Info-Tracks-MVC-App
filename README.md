@@ -10,6 +10,7 @@ b Added other search engines to the front end like bing, yahoo etc
 c Log activities so if any errors occurred, it would be logged.
 d Create a history page so the user can see their searches from the past.
 
+
 Use case:
 1. Enter "infotracks" in the keyword field and "www.google.co.uk" in the search engine field and it populated the results section.
 
