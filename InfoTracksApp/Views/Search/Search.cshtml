@@ -1,0 +1,54 @@
+﻿@using InfoTracksApp.Models
+@model SearchModel
+@{
+    ViewData["Title"] = "Search";
+}
+
+<script src="~/js/bootstrap-validation.js"></script>
+
+<div class="col-md-12 mt-2">
+    <div class="card">
+        <div class="card-header">
+            <form asp-action="Search" enctype="multipart/form-data" method="post" novalidate>
+                <div class="form-row">
+                    <div class="form-group col-4">
+                        <label asp-for="SearchPhase"></label>
+                        <input asp-for="SearchPhase" class="form-control" maxlength="250" required/>
+                    </div>
+                    <div class="form-group col-4">
+                        <label asp-for="SearchURL"></label>
+                        <input asp-for="SearchURL" class="form-control" maxlength="250" required/>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit" id="SubmitForm">Update search</button>
+            </form>
+        </div>
+        @if (@Model.SearchResults != null && @Model.SearchResults.SearchEngineRanks != null)
+        {
+            <div class="card-body">
+                <h5 class="border-bottom pb-2">Results</h5>
+            
+                <p class="text-muted"> There are @Model.SearchResults.SearchEngineRanks.Count() matches for @Model.SearchURL</p>
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Search Engine URL</th>
+                            <th scope="col">Search Position</th>
+                            <th scope="col">Search Criteria</th>
+                            <th scope="col">Search Date/Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> <a href="@Model.SearchURL">@Model.SearchURL</a> </td>
+                            <td> @Html.Raw(string.Join(", ", @Model.SearchResults.SearchEngineRanks)) </td>
+                            <td> @Html.Raw(@Model.SearchPhase) </td>
+                            <td> @Html.Raw(@Model.SearchResults.SearchDate) </td>
+                        </tr>
+                    </tbody>
+                </table>               
+            </div>
+        }
+    </div>
+
+</div>
